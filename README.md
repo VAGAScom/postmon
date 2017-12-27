@@ -1,7 +1,7 @@
 Postmon [<img src="https://api.travis-ci.org/PostmonAPI/postmon.svg?branch=master" />](http://travis-ci.org/PostmonAPI/postmon) [![Coverage Status](https://coveralls.io/repos/github/PostmonAPI/postmon/badge.svg?branch=master)](https://coveralls.io/github/PostmonAPI/postmon?branch=master) [![Support via Gratipay](
 https://img.shields.io/gratipay/team/postmon.svg)](https://gratipay.com/postmon/)
-
 ==========
+
 API para consulta de CEP's e relacionados
 
 Requisitos do ambiente de desenvolvimento
