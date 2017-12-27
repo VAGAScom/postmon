@@ -17,7 +17,7 @@ import requests
 from database import MongoDb as Database
 
 logger = logging.getLogger(__name__)
-HealthCheck(bottle, "/__health__")
+healthcheck = HealthCheck(bottle, "/healthcheck")
 
 app = bottle.default_app()
 app.catchall = False
@@ -28,6 +28,7 @@ jsonp_query_key = 'callback'
 db = Database()
 db.create_indexes()
 
+healthcheck.add_check(db.healthcheck)
 
 def validate_format(callback):
     def wrapper(*args, **kwargs):
