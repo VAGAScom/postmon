@@ -30,6 +30,7 @@ db.create_indexes()
 
 healthcheck.add_check(db.healthcheck)
 
+
 def validate_format(callback):
     def wrapper(*args, **kwargs):
         output_format = request.query.format
