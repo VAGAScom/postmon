@@ -34,6 +34,10 @@ class MongoDb(object):
     def create_indexes(self):
         self._db.ceps.ensure_index('cep')
 
+    def healthcheck(self):
+        self._client.server_info()
+        return True, 'MongoDb OK'
+
     def get_one(self, cep, **kwargs):
         r = self._db.ceps.find_one({'cep': cep}, **kwargs)
         if r and u'endereço' in r and 'endereco' not in r:
