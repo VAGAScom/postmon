@@ -16,6 +16,7 @@ import CepTracker
 import PackTracker
 from PostmonServer import expired, jsonp_query_key
 from database import MongoDb
+from AirbrakePostmon import AirbrakePostmon
 
 bottle.DEBUG = True
 
@@ -289,8 +290,9 @@ class PostmonErrors(unittest.TestCase):
         self.assertEqual('*', response.headers['Access-Control-Allow-Origin'])
         self.assertEqual('', response.body)
 
+    @mock.patch.object(AirbrakePostmon, "notify")
     @mock.patch('PostmonServer._get_info_from_source')
-    def test_503_status(self, _mock):
+    def test_503_status(self, _mock, _mock_airbrake):
         _mock.side_effect = RequestException
         response = self.get_cep('88888888', expect_errors=True)
         self.assertEqual("503 Servico Temporariamente Indisponivel",
@@ -299,8 +301,9 @@ class PostmonErrors(unittest.TestCase):
         self.assertEqual('*', response.headers['Access-Control-Allow-Origin'])
         self.assertEqual('', response.body)
 
+    @mock.patch.object(AirbrakePostmon, "notify")
     @mock.patch('PostmonServer._get_info_from_source')
-    def test_503_status_with_xml_format(self, _mock):
+    def test_503_status_with_xml_format(self, _mock, _mock_airbrake):
         _mock.side_effect = RequestException
         response = self.get_cep('88888888', format='xml', expect_errors=True)
         self.assertEqual("503 Servico Temporariamente Indisponivel",

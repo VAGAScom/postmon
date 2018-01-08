@@ -15,6 +15,7 @@ from CepTracker import CepTracker, _notfound_key
 import PackTracker
 import requests
 from database import MongoDb as Database
+from AirbrakePostmon import AirbrakePostmon
 
 logger = logging.getLogger(__name__)
 healthcheck = HealthCheck(bottle, "/healthcheck")
@@ -29,6 +30,7 @@ db = Database()
 db.create_indexes()
 
 healthcheck.add_check(db.healthcheck)
+airbrake_postmon = AirbrakePostmon()
 
 
 def validate_format(callback):
@@ -131,6 +133,7 @@ def verifica_cep(cep):
         except requests.exceptions.RequestException:
             message = '503 Servico Temporariamente Indisponivel'
             logger.exception(message)
+            airbrake_postmon.notify(message)
             return make_error(message)
         else:
             for item in info:
