@@ -72,6 +72,14 @@ $ docker run -d -p 80:9876 postmon
 
 Acesse o endereço `http://<endereço-do-servidor-docker>/v1/cep/<cep-a-consultar>`, por exemplo `http://127.0.0.1/v1/cep/01311940`.
 
+Configuração do Airbrake
+------------------------
+
+O [Airbrake](https://airbrake.io/) pode ser utilizado para monitorar os erros na chamado dos Correios para a verificação de CEP, para tanto as seguintes variáveis de ambiente do sistema operacional devem ser preenchidas:
+
+- **AIRBRAKE_PROJECT_ID**: código do projeto cadastrado no Airbrake
+- **AIRBRAKE_API_KEY**: chave de acesso do cadastrado do projeto no Airbrake
+- **AIRBRAKE_ENVIRONMENT**: ambiente no qual a aplicação esta sendo executada (development, staging, production, etc)
 
 MongoDB com autenticação
 ------------------------
