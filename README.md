@@ -97,6 +97,12 @@ Para conectar em um banco remoto exporte a variável de ambiente:
 export POSTMON_DB_HOST=<IP_DO_SERVIDOR>
 ```
 
+Caso você queira se conectar a um replica set do mongo, separe os hosts por *,* (virgulas):
+```bash
+export POSTMON_DB_HOST=<IP_DO_SERVIDOR_1>,<IP_DO_SERVIDOR_2>,...,<IP_DO_SERVIDOR_N>
+```
+
+
 Scheduler
 ---------
 

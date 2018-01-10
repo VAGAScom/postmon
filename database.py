@@ -21,7 +21,7 @@ class MongoDb(object):
 
     def __init__(self):
         DATABASE = os.environ.get('POSTMON_DB_NAME', 'postmon')
-        HOST = os.environ.get('POSTMON_DB_HOST', 'localhost')
+        HOST = os.environ.get('POSTMON_DB_HOST', 'localhost').split(',')
         USERNAME = os.environ.get('POSTMON_DB_USER')
         PASSWORD = os.environ.get('POSTMON_DB_PASSWORD')
 
